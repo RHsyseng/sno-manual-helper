@@ -1,0 +1,28 @@
+apiVersion: v1
+baseDomain: '<base domain for your cluster>'
+compute:
+- name: worker
+  replicas: 0
+controlPlane:
+  name: master
+  replicas: 1
+metadata:
+  name: '<your cluster name>'
+networking:
+  networkType: OVNKubernetes
+  clusterNetwork:
+  - cidr: 10.132.0.0/14
+    hostPrefix: 23
+  serviceNetwork:
+  - 172.30.0.0/16
+proxy:
+  httpProxy: '<your proxy>'
+  httpsProxy: '<your proxy>'
+  noProxy: '<comma-separated list of domains and CIDRS for which proxy should not be used>'
+platform:
+  none: {}
+bootstrapInPlace:
+  InstallationDisk: /dev/sda
+pullSecret: '<pull secret>'
+sshKey: |
+  <pub ssh key>
