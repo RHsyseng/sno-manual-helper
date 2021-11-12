@@ -1,6 +1,12 @@
 #!/bin/bash
 
-OCP_RELEASE=${OCP_RELEASE:-'stable-4.9'}
+OCP_RELEASE=$1; shift
+
+if [ -z "$OCP_RELEASE" ]
+then
+  OCP_RELEASE='stable-4.9'
+fi
+
 LOCAL_SECRET_JSON=./pull_secret.json
 
 OCP_RELEASE_VERSION=$(curl -s https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/${OCP_RELEASE}/release.txt | grep 'Version:' | awk -F ' ' '{print $2}')
