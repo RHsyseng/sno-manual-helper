@@ -1,11 +1,11 @@
 #!/bin/bash
 
-NODEIP="changeme"
+NODEIP=$1; shift
 
-if [ "${NODEIP}" == "changeme" ]
+if [ -z "$NODEIP" ]
 then
-  echo "Edit this script and change NODEIP variable value"
-  exit 1
+    echo "Run the script like ./03_generate_inplacedns_config.sh <your SNO node IP>, for example: ./03_generate_inplacedns_config.sh 10.19.142.235"
+    exit 1
 fi
 
 cat <<EOF > assets/10_inplace_dns.yaml

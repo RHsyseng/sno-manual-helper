@@ -1,10 +1,11 @@
 #!/bin/bash
-CPUSET="changeme"
 
-if [ "${CPUSET}" == "changeme" ]
+CPUSET=$1; shift
+
+if [ -z "$CPUSET" ]
 then
-  echo "Edit this script and change CPUSET variable value"
-  exit 1
+    echo "Run the script like ./02_generate_workloadpartitioning_config.sh <CPUSET>, for example ./02_generate_workloadpartitioning_config.sh 0-3,16-19"
+    exit 1
 fi
 
 cat <<EOF > assets/99_workload_partitioning.yaml

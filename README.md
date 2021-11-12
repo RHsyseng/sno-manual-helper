@@ -20,10 +20,10 @@ You are going to install OpenShift 4.9.5
 <omitted>
 ```
 
-or to install a particular release, OCP_RELEASE can be any version under [link](https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/), for example ‘stable-4.8’, ‘4.8.12’, ‘4.9.4’, ‘latest’ etc. like 4.9.4 in below example:
+or to install a particular release under [link](https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/), for example ‘stable-4.8’, ‘4.8.12’, ‘4.9.4’, ‘latest’ etc. like 4.9.4 in below example:
 
 ```shell
-$ OCP_RELEASE=4.9.4 ./00_extract_tools_from_release.sh
+$ ./00_extract_tools_from_release.sh 4.9.4
 You are going to install OpenShift 4.9.4
 <omitted>
 
@@ -37,20 +37,25 @@ rhcos-live.iso
 
 ```
 
-Edit 02_generate_workloadpartitioning_config.sh to set CPUSET, then:
+Run 02_generate_workloadpartitioning_config.sh to set reserved CPUSET:
 
 ```shell
 $ ./02_generate_workloadpartitioning_config.sh
+Run the script like ./02_generate_workloadpartitioning_config.sh <CPUSET>, for example ./02_generate_workloadpartitioning_config.sh 0-3,16-19
+$ ./02_generate_workloadpartitioning_config.sh 0-3,16-19
 $ ls -1 assets/
 99_workload_partitioning.yaml
 install-config.yaml
 
 ```
 
-Edit the 03_generate_inplacedns_config.sh script and edit the NODEIP variable, then:
+Run 03_generate_inplacedns_config.sh script to setup the in-place DNS resolution:
 
 ```shell
-$ ./03_generate_inplacedns_config.sh
+$./03_generate_inplacedns_config.sh 
+Run the script like ./03_generate_inplacedns_config.sh <your SNO node IP>, for example: ./03_generate_inplacedns_config.sh 10.19.142.235
+
+$ ./03_generate_inplacedns_config.sh 10.19.142.235
 $ ls -1 assets/
 99_workload_partitioning.yaml
 Install-config.yaml

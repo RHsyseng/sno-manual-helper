@@ -1,2 +1,9 @@
 /sno-manual-helper.iml
 pull_secret.json
+/temp/rhcos-live.iso
+/temp/oc-client.tar.gz
+./build/*.iso
+/bin/oc
+/bin/openshift-install
+/assets/99_workload_partitioning.yaml
+/assets/10_inplace_dns.yaml
