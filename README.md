@@ -130,3 +130,43 @@ clusteroperator.config.openshift.io/service-ca                                 4
 clusteroperator.config.openshift.io/storage                                    4.9.5     True        False         False      8h   
 
 ```
+
+
+## Dual statck cluster setup
+
+Only thing different is in file assets/install-config.yaml, both IPv4 and IPv6 CIDR shall be configured, following is an example:
+
+```yaml
+networking:
+  networkType: OVNKubernetes
+  machineNetwork:
+  - cidr: 10.19.136.0/21
+  - cidr: 2620:52:0:1388::/64
+  clusterNetwork:
+  - cidr: 10.132.0.0/14
+    hostPrefix: 23
+  - cidr: fd01::/48
+    hostPrefix: 64  
+  serviceNetwork:
+  - 172.30.0.0/16
+  - fd02::/112
+
+```
+
+## Pure IPv6 cluster setup
+
+The SNO node shall have a pure IPv6 configured, similarly the IPv6 CIDR shall be configured in file assets/install-config.yaml, following is an example:
+
+
+```yaml
+networking:
+  networkType: OVNKubernetes
+  machineNetwork:
+  - cidr: 2620:52:0:1388::/64
+  clusterNetwork:
+  - cidr: fd01::/48
+    hostPrefix: 64  
+  serviceNetwork:
+  - fd02::/112
+
+```
