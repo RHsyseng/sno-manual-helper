@@ -4,7 +4,7 @@ OCP_RELEASE=$1; shift
 
 if [ -z "$OCP_RELEASE" ]
 then
-  OCP_RELEASE='stable-4.9'
+  OCP_RELEASE='stable-4.12'
 fi
 
 LOCAL_SECRET_JSON=./pull_secret.json
